@@ -84,7 +84,7 @@ function SettingsContent() {
                   <div className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                     <p><strong>Admin:</strong> Full access to all features including admin dashboard and settings</p>
                     <p><strong>Student Full:</strong> Access to all pages except admin features</p>
-                    <p><strong>Student Limited:</strong> Access to chat and blog (write only), plus public pages</p>
+                    <p><strong>Student Limited:</strong> Access to public pages</p>
                   </div>
                 </div>
 

@@ -2,7 +2,7 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { LoadingAnimation } from "@/components/LoadingAnimation";
+import { LoadingAnimation } from "@/components/LoadingAnimation"; // This import is correct
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -14,7 +14,7 @@ export default function Home() {
     // Simulate loading animation
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 4000); // <-- CHANGED THIS LINE from 2000 to 4000 (4 seconds)
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,10 +40,11 @@ export default function Home() {
               repeatType: "reverse",
             }}
             style={{
-              backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
+              backgroundImage:
+                "radial-gradient(circle, white 1px, transparent 1px)",
               backgroundSize: "50px 50px",
             }}
-        />
+          />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -97,15 +98,10 @@ export default function Home() {
               {[
                 {
                   title: "Blog",
-                  description: "Share your thoughts and ideas with the community",
+                  description:
+                    "Share your thoughts and ideas with the community",
                   icon: "📝",
                   link: "/blog",
-                },
-                {
-                  title: "Chat",
-                  description: "Connect with classmates in real-time",
-                  icon: "💬",
-                  link: "/chat",
                 },
                 {
                   title: "Events",
@@ -118,12 +114,6 @@ export default function Home() {
                   description: "Browse through our shared memories",
                   icon: "🖼️",
                   link: "/gallery",
-                },
-                {
-                  title: "Games",
-                  description: "Have fun with interactive games",
-                  icon: "🎮",
-                  link: "/games",
                 },
                 {
                   title: "About",
@@ -151,13 +141,13 @@ export default function Home() {
                   <Link
                     href={feature.link}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
-          >
+                  >
                     Explore →
                   </Link>
                 </motion.div>
               ))}
             </div>
-        </div>
+          </div>
         </section>
       </main>
       <Footer />

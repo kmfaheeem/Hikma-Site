@@ -29,23 +29,16 @@ export const Navbar = () => {
         ...baseItems,
         { path: "/gallery", label: "Gallery" },
         { path: "/events", label: "Events" },
-        { path: "/games", label: "Games" },
-        { path: "/chat", label: "Chat" },
         { path: "/admin", label: "Admin" },
         { path: "/settings", label: "Settings" },
       ];
     } else if (user.role === "student-full") {
       return [
         ...baseItems,
-        { path: "/gallery", label: "Gallery" },
-        { path: "/events", label: "Events" },
-        { path: "/games", label: "Games" },
-        { path: "/chat", label: "Chat" },
       ];
     } else if (user.role === "student-limited") {
       return [
         ...baseItems,
-        { path: "/chat", label: "Chat" },
       ];
     }
 

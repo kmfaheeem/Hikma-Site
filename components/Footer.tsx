@@ -39,11 +39,6 @@ export const Footer = () => {
                   Events
                 </Link>
               </li>
-              <li>
-                <Link href="/games" className="hover:text-blue-400 transition-colors duration-200 hover:translate-x-1 inline-block">
-                  Games
-                </Link>
-              </li>
             </ul>
           </div>
           <div>

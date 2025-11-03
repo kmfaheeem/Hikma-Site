@@ -87,7 +87,6 @@ export default function Blog() {
                 Blog
               </h1>
               {(user?.role === "student-full" || 
-                user?.role === "student-limited" || 
                 user?.role === "admin") && (
                 <CreatePostButton />
               )}

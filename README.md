@@ -109,7 +109,6 @@ After users sign in with Google, assign roles in Firebase Console:
 - 📝 **Blog**: Read posts, write posts (students can create)
 - 🖼️ **Gallery**: View images (admin can upload)
 - 📅 **Events**: View events (admin can create)
-- 🎮 **Games**: Interactive games page
 - 💬 **Chat**: Real-time messaging for authenticated students
 - ⚙️ **Admin**: Dashboard with site statistics (admin only)
 - 🔧 **Settings**: Site configuration (admin only)
