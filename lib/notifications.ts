@@ -1,10 +1,17 @@
 /**
  * Notification utility functions
- * 
+ *
  * Use these functions to create notifications for users
  */
 
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+  writeBatch,
+  doc,
+} from "firebase/firestore";
 import { db } from "./firebase";
 
 export interface CreateNotificationParams {
@@ -42,14 +49,15 @@ export const createNotificationForAll = async (
   type?: "info" | "warning" | "success" | "announcement"
 ) => {
   try {
-    // Get all users
-    const { getDocs, collection: getCollection, writeBatch, doc as getDocRef } = await import("firebase/firestore");
-    const usersSnapshot = await getDocs(getCollection(db, "users"));
-    
-    // Add all notifications using batch
+    // ✅ Get all users from Firestore
+    const usersSnapshot = await getDocs(collection(db, "users"));
+
+    // ✅ Create a batch
     const batch = writeBatch(db);
+
     usersSnapshot.docs.forEach((userDoc) => {
-      const notifRef = getDocRef(getCollection(db, "notifications"));
+      // ✅ Create a new document reference for each notification
+      const notifRef = doc(collection(db, "notifications"));
       batch.set(notifRef, {
         userId: userDoc.id,
         title,
@@ -60,10 +68,10 @@ export const createNotificationForAll = async (
       });
     });
 
+    // ✅ Commit all writes in one go
     await batch.commit();
   } catch (error) {
     console.error("Error creating notifications for all users:", error);
     throw error;
   }
 };
-

@@ -29,12 +29,15 @@ export const Navbar = () => {
         ...baseItems,
         { path: "/gallery", label: "Gallery" },
         { path: "/events", label: "Events" },
+        { path: "/chat", label: "chat" },
         { path: "/admin", label: "Admin" },
         { path: "/settings", label: "Settings" },
+        
       ];
     } else if (user.role === "student-full") {
       return [
         ...baseItems,
+        { path: "/chat", label: "chat" },
       ];
     } else if (user.role === "student-limited") {
       return [

@@ -1,63 +1,59 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-// Store the word and letters for the new animation
+// Word and letters
 const word = "HIKMA";
 const letters = word.split("");
 
-// Variants for the main container (HIKMA word)
-const containerVariants = {
+// Container animation (for staggered letter animation)
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Faster stagger for more fluid letter appearance
-      delayChildren: 0.1, // Start HIKMA animation sooner
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
 
-// *** THESE ARE THE BOUNCING VARIANTS YOU REQUESTED ***
-const letterVariants = {
+// Letter bounce animation
+const letterVariants: Variants = {
   hidden: {
     opacity: 0,
-    y: -100, // Start from the top
-    scale: 0.5, // Start a bit smaller
+    y: -100,
+    scale: 0.5,
   },
   visible: {
     opacity: 1,
-    y: 0, // Land at the final position
-    scale: 1, // End at full size
+    y: 0,
+    scale: 1,
     transition: {
-      type: "spring",
-      damping: 8, // Lower damping = more bounce
-      stiffness: 150, // Higher stiffness = faster snap
+      type: "spring" as const,
+      damping: 8,
+      stiffness: 150,
       mass: 0.5,
     },
   },
 };
 
-// Variants for the animating dots
+// Dot animation (looping bounce)
 const dotVariants = {
   hidden: { opacity: 0, y: 0 },
   visible: {
     opacity: 1,
-    y: -10, // Move up
+    y: -10,
     transition: {
       repeat: Infinity,
-      repeatType: "mirror",
+      repeatType: "mirror" as const,
       duration: 0.4,
-      ease: "easeInOut",
+      ease: "easeInOut" as const,
     },
   },
-};
+} satisfies Variants; // ✅ ensures correct type without losing transition
 
-/**
- * This is the loading animation component.
- * It shows the "HIKMA" text animating in letter by letter,
- * followed by animating dots and the full form of HIKMA.
- */
+
 export const LoadingAnimation = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-4">
@@ -67,7 +63,7 @@ export const LoadingAnimation = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* HIKMA Text with Letter-by-Letter Animation */}
+        {/* HIKMA Animated Text */}
         <motion.h1
           className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent flex drop-shadow-lg"
           variants={containerVariants}
@@ -79,25 +75,24 @@ export const LoadingAnimation = () => {
             <motion.span
               key={index}
               variants={letterVariants}
-              className="inline-block px-0.5" // Small padding for better spacing
+              className="inline-block px-0.5"
             >
               {letter}
             </motion.span>
           ))}
         </motion.h1>
 
-        {/* Full form of HIKMA, appears after main text animation */}
+        {/* Full form text */}
         <motion.p
           className="mt-3 text-center text-sm md:text-base font-semibold text-blue-800 dark:text-blue-200"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 1.2, // Appears after HIKMA letters finish
+            delay: 1.2,
             duration: 0.6,
             ease: "easeOut",
           }}
         >
-          {/* Use <span> with block for explicit line breaks */}
           <span className="block">Home Intellectual Knack</span>
           <span className="block">and Magnificent Activities</span>
         </motion.p>
@@ -107,7 +102,7 @@ export const LoadingAnimation = () => {
           className="flex space-x-1 mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }} // Dots fade in after text
+          transition={{ delay: 1.5, duration: 0.5 }}
         >
           {[...Array(3)].map((_, i) => (
             <motion.span
@@ -117,9 +112,9 @@ export const LoadingAnimation = () => {
               initial="hidden"
               animate="visible"
               transition={{
-                ...dotVariants.visible.transition,
+                ...dotVariants.visible!.transition!,
                 delay: 1.5 + i * 0.2,
-              }} // Stagger dots
+              }}
             />
           ))}
         </motion.div>

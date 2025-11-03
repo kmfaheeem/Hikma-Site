@@ -53,17 +53,17 @@ export default function Home() {
               className="text-center"
             >
               <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                Welcome to Union Site
+                Welcome to HIKMA Union 
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-blue-100">
-                A community platform for our class union
+                A Website for our class union
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/about"
                   className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
                 >
-                  Learn More
+                  Explore More
                 </Link>
                 <Link
                   href="/blog"
