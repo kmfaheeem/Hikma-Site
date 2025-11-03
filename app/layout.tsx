@@ -28,9 +28,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true} // <-- This is the added line
       >
         <AuthProvider>
-        {children}
+          {children}
           <Toaster position="top-right" />
         </AuthProvider>
       </body>
